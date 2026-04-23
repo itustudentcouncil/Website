@@ -1,0 +1,32 @@
+name: Deploy website to FireSteel with Docker (Legacy)
+
+on:
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: student-council-dev-image:latest
+  CONTAINER_NAME: student-council-dev-container
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t $IMAGE_NAME .
+
+      - name: Stop old Docker container
+        run: |
+          docker stop $CONTAINER_NAME || true
+          docker rm $CONTAINER_NAME || true
+
+      # Use the server port 80 to listen from the container port 3000
+      - name: Run new Docker container. 
+        run: |
+          docker run -d --name $CONTAINER_NAME \
+            --restart unless-stopped \
+            -p 80:3000 \
+            $IMAGE_NAME

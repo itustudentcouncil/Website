@@ -1,0 +1,22 @@
+@keyframes link-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.linkSlideIn {
+  opacity: 0;
+  animation: link-slide-in 420ms ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .linkSlideIn {
+    opacity: 1;
+    animation: none;
+  }
+}

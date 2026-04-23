@@ -1,0 +1,80 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 2px 8px 2px 8px;
+    border-radius: 4px;
+    background: transparent;
+    width: fit-content; /* Container will wrap children rather than stretching to fill it's parent */
+
+    /* We use these CSS variables for the glow color, by default they should use the accent color*/
+    --glow-color: var(--accent);
+    --glow-color-light: color-mix(in hsl, var(--glow-color), white 30%);
+
+    transition: background-color 200ms ease-out;
+}
+
+.container:hover {
+    background-color: #bdbdbd15;
+}
+
+.container:active {
+    background-color: transparent;
+}
+
+/* Styles for link */
+.link {
+    /* Make items in link horizontally stack with 4px spacing */
+    display: flex;
+    flex-direction: row; 
+    gap: 6px;
+    align-items: center;
+    min-height: 36px;
+
+    color: var(--glow-color);
+    transform: scale(1);
+
+    transition: transform 0.2s ease, background-color 0.8s ease, text-shadow 200ms ease-out;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+.container:hover .link {
+    /* This block of code adds gradient to text */
+   /* color: transparent;
+    background: linear-gradient(to right, var(--accent-light), var(--accent), var(--accent-light));
+    -webkit-background-clip: text;
+    background-clip: text;*/
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 6px var(--glow-color-light)); /* Glow shadow for svg */
+}
+
+.container:active .link {
+    transform: scale(0.9);
+    filter: drop-shadow(0 0 4px var(--glow-color-light)); /* Glow shadow for svg */
+}
+
+/* Styles for glowbar */
+.glowbar {
+    border-radius: 2px;
+    height: 2px;
+    width: 0%;
+    background-image: linear-gradient(to right, var(--glow-color-light), var(--glow-color), var(--glow-color-light));
+    box-shadow: 0 0 4px var(--glow-color-light); /* Glow shadow */
+
+    align-self: center;
+    transition: width 200ms ease; /* Properties for animating glowbar */
+}
+
+.container:hover .glowbar {
+    width: 80%;
+}
+
+.container:active .glowbar {
+    width: 20%;
+}
