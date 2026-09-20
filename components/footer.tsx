@@ -71,13 +71,6 @@ export function Footer({ navLinks }: FooterProps) {
                   2300 Copenhagen S
                 </span>
               </li>
-              <li className="flex items-start gap-2">
-                <Clock className="h-4 w-4 text-neutral-600 dark:text-neutral-400 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-neutral-600 dark:text-neutral-400">
-                  Office Hours:<br />
-                  Mon-Fri: 9:00 - 17:00
-                </span>
-              </li>
             </ul>
           </div>
 
