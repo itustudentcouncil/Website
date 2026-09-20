@@ -49,11 +49,13 @@ async function getWeeklyEvents(): Promise<WeeklyEvent[]> {
 export default async function EventsPage() {
 	const events = await getEvents();
 	const weeklyEvents = await getWeeklyEvents();
-	
+		
+	const yesterday = new Date();
+	yesterday.setDate(yesterday.getDate() -1);
 	// Filter for upcoming events only
 	const upcomingEvents = events.filter(event => {
 		const eventDate = new Date(event.date);
-		return eventDate >= new Date();
+		return eventDate >= yesterday;
 	}).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
 	return (
